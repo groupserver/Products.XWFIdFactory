@@ -23,16 +23,16 @@ testXML = """<?xml version="1.0" ?>
 </root>"""
 
 class FakePOSTRequest:
-    """ A really minimal class to fake a POST. Probably looks
-    nothing like the real thing, but close enough for our needs :)
+    """ A really minimal class to fake a POST. Probably looks nothing like the
+    real thing, but close enough for our needs :)
     
     """
     import StringIO
     stdin = StringIO.StringIO(testXML)
 
 def minimallyEqualXML(one, two):
-    """ Strip all the whitespace out of two pieces of XML code, having first converted
-    them to a DOM as a minimal test of equivalence.
+    """ Strip all the whitespace out of two pieces of XML code, having first
+    converted them to a DOM as a minimal test of equivalence.
     
     """
     from xml.dom import minidom
@@ -66,34 +66,34 @@ class TestXWFIdFactory(ZopeTestCase.ZopeTestCase):
         """ Register a namespace with the ID Factory.
         
         """
-	self.idfactory.register(namespace)
+    	self.idfactory.register(namespace)
         
         return self.idfactory        
 
-    def test_1_createXWFIdFactory(self):
+    def test_01_createXWFIdFactory(self):
         self.failUnless(self.idfactory)
         
-    def test_2_registerNamespace(self):
+    def test_02_registerNamespace(self):
         idfactory = self._setupNamespaces('http://foo.com')
         counters = idfactory.get_counters()
         
         self.failUnless(counters.has_key('http://foo.com'))
 
-    def test_3_incrementNamespace1(self):
+    def test_03_incrementNamespace1(self):
         value = self.idfactory.next('http://testname.com')
+        
+        self.assertEqual(value, (1,1))
 
-        self.failUnless(value == (1,1))
-
-    def test_4_incrementNamespace50(self):
+    def test_04_incrementNamespace50(self):
         value = self.idfactory.next('http://testname.com', 50)
         
-        self.failUnless(value == (1,50))
+        self.assertEqual(value, (1,50))
 
-    def test_5_setNamespace(self):
+    def test_05_setNamespace(self):
         self.idfactory.set('http://testname.com',150)
         counters = self.idfactory.get_counters()
         
-        self.failUnless(counters['http://testname.com'] == 150)
+        self.assertEqual(counters['http://testname.com'], 150)
 
 if __name__ == '__main__':
     print framework(descriptions=1, verbosity=1)
@@ -101,5 +101,5 @@ else:
     import unittest
     def test_suite():
         suite = unittest.TestSuite()
-        suite.addTest(unittest.makeSuite(TestSomeProduct))
+        suite.addTest(unittest.makeSuite(TestXWFIdFactory))
         return suite
