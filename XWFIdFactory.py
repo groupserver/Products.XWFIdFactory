@@ -101,9 +101,9 @@ class XWFIdFactory(SimpleItem):
         import shutil, os
         old_counters_dir = item.counters_dir
         self.init_counters()
-        for item in os.listdir(old_counters_dir):
-            shutil.copy(os.path.join(old_counters_dir, item),
-                        os.path.join(item.counters_dir, item))
+        for counter_file in os.listdir(old_counters_dir):
+            shutil.copy(os.path.join(old_counters_dir, counter_file),
+                        os.path.join(item.counters_dir, counter_file))
         return 1
         
         
