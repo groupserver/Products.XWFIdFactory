@@ -71,6 +71,9 @@ class XWFIdFactory(SimpleItem):
             Unittest: TestXWFIdFactory
             
         """
+        import shutil, os
+        orig_counters_dir = getattr(self, 'counters_dir', None)
+        
         self.counters_dir = os.path.join(self.base_counters_dir,
                                          apply(os.path.join,
                                                self.getPhysicalPath()))
@@ -84,8 +87,20 @@ class XWFIdFactory(SimpleItem):
             else:
                 raise
     
+        # if the orig_counters_dir exists, we are being copied, so we
+        # need to copy the counter files as well
+        if orig_counters_dir:
+            for counter_file in os.listdir(orig_counters_dir):
+                ofile = os.path.join(orig_counters_dir, counter_file)
+                nfile = os.path.join(self.counters_dir, counter_file)
+                shutil.copy(ofile, nfile)            
+
     def manage_afterAdd(self, item, container):
         """ For configuring the object post-instantiation.
+    
+            Note: this gets called both after adding _and_ after copying,
+            so take extra care to be sure nothing is initialised here that
+            shouldn't be initialised after a copy!
             
             Unittest: TestXWFIdLibrary
              
@@ -93,19 +108,6 @@ class XWFIdFactory(SimpleItem):
         item.init_counters()
         
         return 1
-    
-    def manage_afterClone(self, item):
-        """ For reconfiguring the object after cloning.
-        
-        """
-        import shutil, os
-        old_counters_dir = item.counters_dir
-        self.init_counters()
-        for counter_file in os.listdir(old_counters_dir):
-            shutil.copy(os.path.join(old_counters_dir, counter_file),
-                        os.path.join(item.counters_dir, counter_file))
-        return 1
-        
         
     security.declareProtected('Upgrade objects', 'upgrade')
     security.setPermissionDefault('Upgrade', ('Manager', 'Owner'))
