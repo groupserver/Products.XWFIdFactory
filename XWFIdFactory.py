@@ -38,7 +38,7 @@ class XWFIdFactory(SimpleItem):
 
     base_counters_dir = os.path.join(Globals.package_home(globals()),
                                      'counters')
-
+    
     def __init__(self, id, file=None):
         """ Initialise a new instance of XWFIdFactory.
         
@@ -88,12 +88,25 @@ class XWFIdFactory(SimpleItem):
         """ For configuring the object post-instantiation.
             
             Unittest: TestXWFIdLibrary
-            
+             
         """
         item.init_counters()
         
         return 1
     
+    def manage_afterClone(self, item):
+        """ For reconfiguring the object after cloning.
+        
+        """
+        import shutil, os
+        old_counters_dir = item.counters_dir
+        self.init_counters()
+        for item in os.listdir(old_counters_dir):
+            shutil.copy(os.path.join(old_counters_dir, item),
+                        os.path.join(item.counters_dir, item))
+        return 1
+        
+        
     security.declareProtected('Upgrade objects', 'upgrade')
     security.setPermissionDefault('Upgrade', ('Manager', 'Owner'))
     def upgrade(self):
