@@ -115,7 +115,10 @@ class XWFIdFactory(SimpleItem):
             Unittest: TestXWFIdLibrary
              
         """
-        item.init_counters()
+        try:
+            item.init_counters()
+        except:
+            pass
         
         return 1
         
