@@ -1,0 +1,20 @@
+ Please add unit tests for every method for which it would be reasonable to add a
+ unit test. See tests/testXWFIdFactory.py for details. Always run the unit test code
+ after adding a new method, and ALWAYS run the unit test code before checking
+ in.
+ 
+ New code will NOT be accepted into the head without unit test coverage,
+ nor will code be accepted which fails the unit tests. If a test is failing, either
+ fix the broken code, or update the test.
+
+ If you need help to get the test harness running, please email richard@iopen.net.
+ 
+ Do not modify an existing API without consulting the primary author for that class.
+ 
+ Any 'borrowed' code MUST be attributed correctly. Failure to attribute code will result
+ in the code being removed from the head -- obviously we do not want to risk breaching
+ copyright!
+ 
+ All methods must have good docstrings, unless they provide absolutely trivial
+ functionality. Remember that documentation or interfaces might be auto-generated
+ from your code, and access to the internal workings of a method may not be available.

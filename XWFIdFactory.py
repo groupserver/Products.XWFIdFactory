@@ -1,10 +1,10 @@
 # Copyright IOPEN Technologies Ltd., 2003
 # richard@iopen.net
 #
-# Please add unit tests for every method for which it would be
-# reasonable to add a unit test. See tests/testXWFIdFactory.py for
-# details. Always run the unit test code after adding a new
-# method, and _ALWAYS_ run the unit test code before checking in.
+# For details of the license, please see LICENSE.
+#
+# You MUST follow the rules in README_STYLE before checking in code
+# to the head. Code which does not follow the rules will be rejected.  
 #
 
 import os, Globals
