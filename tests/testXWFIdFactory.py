@@ -45,7 +45,7 @@ class TestXWFIdFactory(ZopeTestCase.ZopeTestCase):
         self.idfactory = self._setupXWFIdFactory()
         self.idfactory.upgrade()
         self.idfactory.register('http://testname.com')
-        
+                        
     def beforeTearDown(self):
         self.idfactory.deregister('http://testname.com')
 
@@ -91,7 +91,7 @@ class TestXWFIdFactory(ZopeTestCase.ZopeTestCase):
         self.failUnless(counters['http://testname.com'] == 150)
 
 if __name__ == '__main__':
-    framework(descriptions=1, verbosity=1)
+    print framework(descriptions=1, verbosity=1)
 else:
     import unittest
     def test_suite():

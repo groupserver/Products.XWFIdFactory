@@ -11,15 +11,13 @@ import os, Globals
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 from AccessControl import getSecurityManager, ClassSecurityInfo
-from Globals import InitializeClass, PersistentMapping
 from OFS.SimpleItem import SimpleItem
-from OFS.PropertyManager import PropertyManager
 
 import ThreadLock, Globals, md5
 
 _thread_lock = ThreadLock.allocate_lock()
 
-class XWFIdFactory(SimpleItem, PropertyManager):
+class XWFIdFactory(SimpleItem):
     """ An ID factory for producing globally unique ID's for a given
         namespace.
 
