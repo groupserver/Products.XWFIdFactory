@@ -6,6 +6,7 @@
 # details. Always run the unit test code after adding a new
 # method, and _ALWAYS_ run the unit test code before checking in.
 #
+
 import os, Globals
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
@@ -20,7 +21,7 @@ _thread_lock = ThreadLock.allocate_lock()
 class XWFIdFactory(SimpleItem):
     """ An ID factory for producing globally unique ID's for a given
         namespace.
-
+    
     """
     security = ClassSecurityInfo()
     
@@ -93,6 +94,7 @@ class XWFIdFactory(SimpleItem):
             
         """
         currversion = getattr(self, '_version', 0)
+        
         if currversion == self.version:
             return 'already running latest version (%s)' % currversion
 
@@ -309,5 +311,5 @@ def initialize(context):
         permission='Add XWF Id Factory',
         constructors=(manage_addXWFIdFactoryForm,
                       manage_addXWFIdFactory),
-        icon='icons/ic-xml.gif'
+        icon='icons/ic-idfactory.gif'
         )
