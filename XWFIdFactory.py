@@ -84,6 +84,15 @@ class XWFIdFactory(SimpleItem):
             else:
                 raise
     
+    def manage_afterAdd(self, item, container):
+        """ For configuring the object post-instantiation.
+            
+            Unittest: TestXWFIdLibrary
+            
+        """
+        item.init_counters()
+        
+        return 1
     
     security.declareProtected('Upgrade objects', 'upgrade')
     security.setPermissionDefault('Upgrade', ('Manager', 'Owner'))
@@ -288,7 +297,6 @@ def manage_addXWFIdFactory(self, id,
     self._setObject(id, obj)
     
     obj = getattr(self, id)
-    obj.init_counters()
     
     if RESPONSE and submit:
         if submit.strip().lower() == 'add':
