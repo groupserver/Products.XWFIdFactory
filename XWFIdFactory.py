@@ -347,5 +347,5 @@ def initialize(context):
         permission='Add XWF Id Factory',
         constructors=(manage_addXWFIdFactoryForm,
                       manage_addXWFIdFactory),
-        icon='icons/ic-idfactory.gif'
+        icon='icons/ic-idfactory.png'
         )
