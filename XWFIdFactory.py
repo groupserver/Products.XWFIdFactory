@@ -17,11 +17,11 @@
 # You MUST follow the rules in http://iopen.net/STYLE before checking in code
 # to the trunk. Code which does not follow the rules will be rejected.
 #
-import os, Globals
+import os
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
-from AccessControl import getSecurityManager, ClassSecurityInfo
+from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
 
 import ThreadLock, Globals, md5
@@ -81,7 +81,7 @@ class XWFIdFactory(SimpleItem):
             Unittest: TestXWFIdFactory
             
         """
-        import shutil, os
+        import shutil
         orig_counters_dir = getattr(self, 'counters_dir', None)
         
         self.counters_dir = os.path.join(self.base_counters_dir,
@@ -175,7 +175,6 @@ class XWFIdFactory(SimpleItem):
         """ Remove the counter file, given the namespace.
             
         """
-        import os
         nsfn = md5.new(namespace).hexdigest()
         _thread_lock.acquire()
         try:
@@ -333,7 +332,6 @@ def manage_addXWFIdFactory(self, id,
             RESPONSE.redirect('%s/manage_main' % id)
 
 def initialize(context):
-    import os
     # make sure the base counters directory has been created
     try:
         os.makedirs(XWFIdFactory.base_counters_dir, 0770)
