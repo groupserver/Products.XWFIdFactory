@@ -24,6 +24,8 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
 
+from Products.XWFCore.XWFUtils import locateDataDirectory
+
 import ThreadLock, Globals, md5
 
 _thread_lock = ThreadLock.allocate_lock()
@@ -46,8 +48,7 @@ class XWFIdFactory(SimpleItem):
                                     globals(),
                                     __name__='manage_main')
 
-    base_counters_dir = os.path.join(Globals.package_home(globals()),
-                                     'counters')
+    base_counters_dir = locateDataDirectory("groupserver.XWFIdFactory.counters")
     
     def __init__(self, id, file=None):
         """ Initialise a new instance of XWFIdFactory.
