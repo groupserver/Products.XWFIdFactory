@@ -38,7 +38,7 @@ class XWFIdFactory(SimpleItem):
     security = ClassSecurityInfo()
     
     meta_type = 'XWF Id Factory'
-    version = 0.1
+    version = 0.11
 
     manage_options = ({'label': 'Configure',
                        'action': 'manage_main'},
@@ -138,6 +138,7 @@ class XWFIdFactory(SimpleItem):
 
         self._version = self.version
         self.init_properties()
+        self.init_counters()
         
         return 'upgraded %s to version %s from version %s' % (self.getId(),
                                                               self._version,
