@@ -100,7 +100,7 @@ class XWFIdFactory(SimpleItem):
     
         # if the orig_counters_dir exists, we are being copied, so we
         # need to copy the counter files as well
-        if orig_counters_dir:
+        if orig_counters_dir and os.path.exists(orig_counters_dir):
             for counter_file in os.listdir(orig_counters_dir):
                 ofile = os.path.join(orig_counters_dir, counter_file)
                 nfile = os.path.join(self.counters_dir, counter_file)
