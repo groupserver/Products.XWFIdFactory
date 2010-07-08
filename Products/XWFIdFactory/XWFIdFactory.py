@@ -26,9 +26,10 @@ from OFS.SimpleItem import SimpleItem
 
 from Products.XWFCore.XWFUtils import locateDataDirectory
 
-import ThreadLock, Globals, md5
+import Globals, md5
+from threading import Lock
 
-_thread_lock = ThreadLock.allocate_lock()
+_thread_lock = Lock()
 
 class XWFIdFactory(SimpleItem):
     """ An ID factory for producing globally unique ID's for a given
