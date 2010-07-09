@@ -26,7 +26,7 @@ from OFS.SimpleItem import SimpleItem
 
 from Products.XWFCore.XWFUtils import locateDataDirectory
 
-from AccessControl.class_init import InitializeClass
+from App.class_init import InitializeClass
 try:
     from hashlib import md5
 except ImportError:
