@@ -26,7 +26,12 @@ from OFS.SimpleItem import SimpleItem
 
 from Products.XWFCore.XWFUtils import locateDataDirectory
 
-import Globals, md5
+from AccessControl.class_init import InitializeClass
+try:
+    from hashlib import md5
+except ImportError:
+    import md5
+    
 from threading import Lock
 
 _thread_lock = Lock()
@@ -309,7 +314,7 @@ class XWFIdFactory(SimpleItem):
         
         return RESPONSE.redirect('%s/manage_main' % REQUEST['URL1'])
 
-Globals.InitializeClass(XWFIdFactory)
+InitializeClass(XWFIdFactory)
 
 #
 # Zope Management Methods
