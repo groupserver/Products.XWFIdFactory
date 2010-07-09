@@ -51,5 +51,5 @@ class XWFIdFactoryMixin:
         except KeyError:
             idfactory.register(self.id_namespace)
             id = idfactory.next(self.id_namespace)[0]
-        
         return id
+

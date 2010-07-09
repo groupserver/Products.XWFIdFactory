@@ -107,7 +107,7 @@ class TestXWFIdFactory(ZopeTestCase.ZopeTestCase):
         self.assertEqual(counters['http://testname.com'], 150)
 
 if __name__ == '__main__':
-    print framework(descriptions=1, verbosity=1)
+    sys.stdout.write('%s\n' % framework(descriptions=1, verbosity=1))
 else:
     import unittest
     def test_suite():
