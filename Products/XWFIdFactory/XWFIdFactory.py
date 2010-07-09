@@ -30,7 +30,7 @@ from App.class_init import InitializeClass
 try:
     from hashlib import md5
 except ImportError:
-    import md5
+    from md5 import md5
     
 from threading import Lock
 
