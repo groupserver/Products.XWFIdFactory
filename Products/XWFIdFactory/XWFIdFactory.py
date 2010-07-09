@@ -154,7 +154,7 @@ class XWFIdFactory(SimpleItem):
         """ Read the counter from a file, given the namespace.
             
         """
-        nsfn = md5.new(namespace).hexdigest()
+        nsfn = md5(namespace).hexdigest()
         _thread_lock.acquire()
         try:
             f = file('%s/%s' % (self.counters_dir, nsfn))
@@ -169,7 +169,7 @@ class XWFIdFactory(SimpleItem):
         """ Write the counter to a file, given the namespace.
             
         """
-        nsfn = md5.new(namespace).hexdigest()
+        nsfn = md5(namespace).hexdigest()
         _thread_lock.acquire()
         try:
             f = file('%s/%s' % (self.counters_dir, nsfn), 'w+')
@@ -183,7 +183,7 @@ class XWFIdFactory(SimpleItem):
         """ Remove the counter file, given the namespace.
             
         """
-        nsfn = md5.new(namespace).hexdigest()
+        nsfn = md5(namespace).hexdigest()
         _thread_lock.acquire()
         try:
             os.remove('%s/%s' % (self.counters_dir, nsfn))
