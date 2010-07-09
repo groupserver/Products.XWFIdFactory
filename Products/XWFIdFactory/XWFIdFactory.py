@@ -32,9 +32,9 @@ try:
 except ImportError:
     from md5 import md5
     
-from threading import Lock
+from threading import RLock
 
-_thread_lock = Lock()
+_thread_lock = RLock()
 
 class XWFIdFactory(SimpleItem):
     """ An ID factory for producing globally unique ID's for a given
@@ -156,13 +156,15 @@ class XWFIdFactory(SimpleItem):
         """
         nsfn = md5(namespace).hexdigest()
         _thread_lock.acquire()
+        print 'acquired lock'
         try:
             f = file('%s/%s' % (self.counters_dir, nsfn))
             value = f.read()
             value.strip()
         finally:
+            print 'releasing lock'
             _thread_lock.release()            
-
+            print 'released lock'
         return int(value)
 
     def _write_counter(self, namespace, value):
@@ -265,8 +267,9 @@ class XWFIdFactory(SimpleItem):
         
         if namespace not in self.namespaces:
             raise KeyError, 'namespace does not exist'
-        
+        print 'acquire in next'
         _thread_lock.acquire()
+        print 'acquired'
         try:
             current = self._read_counter(namespace)
             self._write_counter(namespace, current+length)
